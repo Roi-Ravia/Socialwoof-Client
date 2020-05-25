@@ -20,6 +20,7 @@ export const getWoofs = () => (dispatch) => {
   axios
     .get("/woofs")
     .then((res) => {
+      console.log(res.data);
       dispatch({
         type: SET_WOOFS,
         payload: res.data,
@@ -30,6 +31,7 @@ export const getWoofs = () => (dispatch) => {
         type: SET_WOOFS,
         payload: [],
       });
+      console.log(err);
     });
 };
 

@@ -19,7 +19,6 @@ export class Navbar extends Component {
     const {
       user: { authenticated, loading },
     } = this.props;
-    console.log(this.props);
     return (
       <div>
         <AppBar>

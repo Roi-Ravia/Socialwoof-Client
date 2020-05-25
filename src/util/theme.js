@@ -111,5 +111,8 @@ export default {
     noUserProfile: {
       margin: "50% 0",
     },
+    likeButton: {
+      paddingLeft: 0,
+    },
   },
 };

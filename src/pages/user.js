@@ -46,8 +46,8 @@ class user extends Component {
 
     let woofMarkUp = loading ? (
       <WoofSkeleton />
-    ) : woofs === null ? (
-      <p>No woofs found for this user</p>
+    ) : woofs === null || woofs.length === 0 ? (
+      <p>No woofs yet...</p>
     ) : !woofIdParam ? (
       woofs.map((woof) => <Woof key={woof.woofId} woof={woof} />)
     ) : (

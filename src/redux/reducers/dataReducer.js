@@ -40,7 +40,7 @@ export default function (state = initialState, action) {
       );
       state.woofs[index] = action.payload;
       if (state.woof.woofId === action.payload.woofId) {
-        state.woof = action.payload;
+        state.woof = { ...state.woof, ...action.payload };
       }
       return {
         ...state,

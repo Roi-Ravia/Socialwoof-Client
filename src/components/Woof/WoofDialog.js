@@ -27,8 +27,8 @@ import UnfoldMore from "@material-ui/icons/UnfoldMore";
 const styles = (theme) => ({
   ...theme.spreadThis,
   profileImage: {
-    maxWidth: 160,
-    height: 160,
+    minWidth: 120,
+    height: 120,
     borderRadius: "50%",
     objectFit: "cover",
   },
@@ -52,7 +52,6 @@ export class WoofDialog extends Component {
     open: false,
     oldPath: "",
     newPath: "",
-    screenSize: "",
   };
   //when component is being loaded
   componentDidMount() {
@@ -103,17 +102,16 @@ export class WoofDialog extends Component {
       },
       UI: { loading },
     } = this.props;
-
     const dialogMarkUp = loading ? (
       <div className={classes.spinnerDiv}>
         <CircularProgress size={150} thickness={2} color="primary" />
       </div>
     ) : (
       <Grid container spacing={1}>
-        <Grid item sm={4}>
+        <Grid item sm={3}>
           <img src={userImage} alt="Profile" className={classes.profileImage} />
         </Grid>
-        <Grid item sm={8}>
+        <Grid item sm={9}>
           <Typography
             variant="h3"
             component={Link}

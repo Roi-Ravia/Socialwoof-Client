@@ -12,6 +12,7 @@ import { connect } from "react-redux";
 import { deleteWoof } from "../../redux/actions/dataAction";
 
 //MUI
+import Grid from "@material-ui/core/Grid";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -29,7 +30,7 @@ const styles = () => ({
   },
   image: {
     position: "relative",
-    top: 20,
+    top: 15,
     left: 10,
     minWidth: 120,
     height: 120,
@@ -41,6 +42,9 @@ const styles = () => ({
   },
   textContent: {
     paddingLeft: 15,
+  },
+  userAction: {
+    marginLeft: 15,
   },
 });
 
@@ -68,56 +72,60 @@ export class Woof extends Component {
 
     const truncatedBody = body.substr(0, 110) + "...";
     return (
-      <div>
-        <Card className={classes.card} variant="outlined">
-          <CardMedia
-            image={userImage}
-            title="Profile Image"
-            className={classes.image}
-          />
-          <CardContent style={{ padding: "16px 16px 6px 16px" }}>
-            <Typography
-              variant="h3"
-              component={Link}
-              to={`/user/${userHandle}`}
-              color="primary"
-              className={classes.textContent}
-            >
-              {userHandle}
-            </Typography>
-            {deleteWoof}
-            <Typography
-              variant="body2"
-              color="textSecondary"
-              className={classes.textContent}
-            >
-              {dayjs(createdAt).fromNow()}
-            </Typography>
-            <Typography
-              id="postBody"
-              variant="body1"
-              className={classes.textContent}
-            >
-              {body.length > 110 ? truncatedBody : body}
-            </Typography>
-            <br />
-            <div className={classes.userActions}>
-              <LikeButton woofId={woofId} />
-              <span>{likeCount} Likes</span>
-              <MyButton tip="Comments">
-                <ChatIcon color="primary" />
-              </MyButton>
-              <span> {commentCount} Comments</span>
-
-              <WoofDialog
-                woofId={woofId}
-                userHandle={userHandle}
-                openDialog={this.props.openDialog}
-              />
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+      <Card className={classes.card} variant="outlined">
+        <CardMedia
+          image={userImage}
+          title="Profile Image"
+          className={classes.image}
+        />
+        <Grid container>
+          <Grid item md={12}>
+            <CardContent style={{ padding: "16px 16px 6px 16px" }}>
+              <Typography
+                variant="h3"
+                component={Link}
+                to={`/user/${userHandle}`}
+                color="primary"
+                className={classes.textContent}
+              >
+                {userHandle}
+              </Typography>
+              {deleteWoof}
+              <Typography
+                variant="body2"
+                color="textSecondary"
+                className={classes.textContent}
+              >
+                {dayjs(createdAt).fromNow()}
+              </Typography>
+              <Typography
+                id="postBody"
+                variant="body1"
+                className={classes.textContent}
+              >
+                {body.length > 110 ? truncatedBody : body}
+              </Typography>
+            </CardContent>
+          </Grid>
+          <Grid item md={3} xs={12} className={classes.userAction}>
+            <LikeButton woofId={woofId} />
+            <span>{likeCount} Likes</span>
+          </Grid>
+          <Grid item md={6} xs={8} className={classes.userAction}>
+            <MyButton tip="Comments">
+              <ChatIcon color="primary" />
+            </MyButton>
+            <span> {commentCount} Comments</span>
+          </Grid>
+          <Grid item md={2} xs={3}>
+            <WoofDialog
+              woofId={woofId}
+              userHandle={userHandle}
+              openDialog={this.props.openDialog}
+            />
+          </Grid>
+        </Grid>
+      </Card>
     );
   }
 }

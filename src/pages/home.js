@@ -21,11 +21,12 @@ class home extends Component {
   render() {
     const { woofs, loading } = this.props.data;
 
-    let recentWoofMarkUp = !loading ? (
-      woofs.map((woof) => <Woof key={woof.woofId} woof={woof} />)
-    ) : (
-      <WoofSkeleton />
-    );
+    let recentWoofMarkUp =
+      !loading && woofs ? (
+        woofs.map((woof) => <Woof key={woof.woofId} woof={woof} />)
+      ) : (
+        <WoofSkeleton />
+      );
     return (
       <div>
         <Grid container>
