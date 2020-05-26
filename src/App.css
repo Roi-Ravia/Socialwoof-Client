@@ -23,6 +23,10 @@ p {
   .container {
     margin-top: 20%;
   }
+
+  div .profile {
+    margin-right: 0;
+  }
 }
 
 .nav-container {
@@ -36,4 +40,10 @@ p {
 
 a {
   text-decoration: none;
+}
+@media (max-width: 370px) {
+  span {
+    font-size: 11px;
+    font-weight: 600;
+  }
 }

@@ -20,7 +20,6 @@ export const getWoofs = () => (dispatch) => {
   axios
     .get("/woofs")
     .then((res) => {
-      console.log(res.data);
       dispatch({
         type: SET_WOOFS,
         payload: res.data,

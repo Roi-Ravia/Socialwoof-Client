@@ -44,7 +44,7 @@ const styles = (theme) => ({
   },
   expandButton: {
     position: "absolute",
-    left: "90%",
+    left: "86%",
   },
   userActionButtons: {
     position: "relative",
@@ -89,7 +89,7 @@ export class WoofDialog extends Component {
   };
 
   handleClose = () => {
-    window.history.pushState(null, null, this.state.oldPath);
+    window.history.pushState(null, null, window.history.go(-1));
     this.setState({
       open: false,
     });

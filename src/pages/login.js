@@ -15,15 +15,9 @@ import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 //UI
-import loginBackground from "../images/dog-login-background.jpg";
 
 const styles = (theme) => ({
   ...theme.spreadThis,
-  backgroundImage: {
-    background: `url${loginBackground}`,
-    height: 1000,
-    width: 1000,
-  },
 });
 
 class login extends Component {
@@ -36,7 +30,7 @@ class login extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.UI.errors) {
       this.setState({ errors: nextProps.UI.errors });
     }
@@ -67,8 +61,8 @@ class login extends Component {
     return (
       <div className={classes.backgroundImage}>
         <Grid container className={classes.form}>
-          <Grid item sm />
-          <Grid item sm>
+          <Grid item xs />
+          <Grid item xs>
             <Typography variant="h3" className={classes.pageTitle}>
               Login
             </Typography>
@@ -124,7 +118,7 @@ class login extends Component {
               </small>
             </form>
           </Grid>
-          <Grid item sm />
+          <Grid item xs />
         </Grid>
       </div>
     );

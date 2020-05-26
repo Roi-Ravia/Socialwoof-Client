@@ -30,7 +30,7 @@ class signup extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.UI.errors) {
       this.setState({ errors: nextProps.UI.errors });
     }
@@ -61,8 +61,8 @@ class signup extends Component {
     const { errors } = this.state;
     return (
       <Grid container className={classes.form}>
-        <Grid item sm />
-        <Grid item sm>
+        <Grid item xs />
+        <Grid item xs>
           <Typography variant="h3" className={classes.pageTitle}>
             Register
           </Typography>
@@ -142,7 +142,7 @@ class signup extends Component {
             </small>
           </form>
         </Grid>
-        <Grid item sm />
+        <Grid item xs />
       </Grid>
     );
   }

@@ -124,7 +124,11 @@ export class Woof extends Component {
           <Grid item md={6} xs={8} className={classes.userAction}>
             <MediaQuery minDeviceWidth={960}>
               <div className={classes.desktopComments}>
-                <MyButton tip="Comments">
+                <MyButton
+                  tip="Comments"
+                  component={Link}
+                  to={`/user/${this.userHandle}/woof/${this.woofId}`}
+                >
                   <ChatIcon color="primary" />
                 </MyButton>
                 <span> {commentCount} Comments</span>
