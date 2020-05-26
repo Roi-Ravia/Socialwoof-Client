@@ -27,6 +27,7 @@ const ProfileSkeleton = (props) => {
       <div className={classes.profile} style={{ position: "relative" }}>
         <div className="image-wrapper">
           <Skeleton
+            animation="wave"
             className="profile-image"
             variant="circle"
             width="60%"
@@ -36,30 +37,35 @@ const ProfileSkeleton = (props) => {
       </div>
       <div className="profile-details" style={{ textAlign: "center" }}>
         <Skeleton
+          animation="wave"
           className={{ root: classes.detail }}
           variant="text"
           width="50%"
           height={20}
         />
         <Skeleton
+          animation="wave"
           className={{ root: classes.detail }}
           variant="text"
           width="80%"
           height={20}
         />
         <Skeleton
+          animation="wave"
           className={{ root: classes.detail }}
           variant="text"
           width="50%"
           height={20}
         />
         <Skeleton
+          animation="wave"
           className={{ root: classes.detail }}
           variant="text"
           width="60%"
           height={20}
         />
         <Skeleton
+          animation="wave"
           className={{ root: classes.detail }}
           variant="text"
           width="70%"

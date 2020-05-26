@@ -14,8 +14,16 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
+//UI
+import loginBackground from "../images/dog-login-background.jpg";
+
 const styles = (theme) => ({
   ...theme.spreadThis,
+  backgroundImage: {
+    background: `url${loginBackground}`,
+    height: 1000,
+    width: 1000,
+  },
 });
 
 class login extends Component {
@@ -57,66 +65,68 @@ class login extends Component {
     const { errors } = this.state;
 
     return (
-      <Grid container className={classes.form}>
-        <Grid item sm />
-        <Grid item sm>
-          <Typography variant="h3" className={classes.pageTitle}>
-            Login
-          </Typography>
-          <form noValidate onSubmit={this.handleSubmit}>
-            <TextField
-              id="email"
-              name="email"
-              type="email"
-              label="Email"
-              className={classes.textField}
-              helperText={errors.email}
-              error={errors.email ? true : false}
-              value={this.state.email}
-              onChange={this.handleChange}
-              fullWidth
-            ></TextField>
-            <TextField
-              id="password"
-              name="password"
-              type="password"
-              label="Password"
-              className={classes.textField}
-              helperText={errors.password}
-              error={errors.password ? true : false}
-              value={this.state.password}
-              onChange={this.handleChange}
-              fullWidth
-            ></TextField>
-            {(errors.general || errors.error) && (
-              <Typography variant="body2" className={classes.customError}>
-                {errors.general}
-              </Typography>
-            )}
-            <Button
-              type="submit"
-              color="primary"
-              variant="contained"
-              className={classes.button}
-              disabled={loading}
-            >
-              {loading && (
-                <CircularProgress size={30} className={classes.loader} />
-              )}
+      <div className={classes.backgroundImage}>
+        <Grid container className={classes.form}>
+          <Grid item sm />
+          <Grid item sm>
+            <Typography variant="h3" className={classes.pageTitle}>
               Login
-            </Button>
-            <br />
-            <small>
-              Don't have an account? Click{" "}
-              <Link to="/signup">
-                <b>here</b>
-              </Link>{" "}
-              to sign up!
-            </small>
-          </form>
+            </Typography>
+            <form noValidate onSubmit={this.handleSubmit}>
+              <TextField
+                id="email"
+                name="email"
+                type="email"
+                label="Email"
+                className={classes.textField}
+                helperText={errors.email}
+                error={errors.email ? true : false}
+                value={this.state.email}
+                onChange={this.handleChange}
+                fullWidth
+              ></TextField>
+              <TextField
+                id="password"
+                name="password"
+                type="password"
+                label="Password"
+                className={classes.textField}
+                helperText={errors.password}
+                error={errors.password ? true : false}
+                value={this.state.password}
+                onChange={this.handleChange}
+                fullWidth
+              ></TextField>
+              {(errors.general || errors.error) && (
+                <Typography variant="body2" className={classes.customError}>
+                  {errors.general}
+                </Typography>
+              )}
+              <Button
+                type="submit"
+                color="primary"
+                variant="contained"
+                className={classes.button}
+                disabled={loading}
+              >
+                {loading && (
+                  <CircularProgress size={30} className={classes.loader} />
+                )}
+                Login
+              </Button>
+              <br />
+              <small>
+                Don't have an account? Click{" "}
+                <Link to="/signup">
+                  <b>here</b>
+                </Link>{" "}
+                to sign up!
+              </small>
+            </form>
+          </Grid>
+          <Grid item sm />
         </Grid>
-        <Grid item sm />
-      </Grid>
+      </div>
     );
   }
 }

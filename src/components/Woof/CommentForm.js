@@ -6,6 +6,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 //Redux
 import { connect } from "react-redux";
@@ -16,6 +17,9 @@ const styles = (theme) => ({
   textField: {
     margin: "0 0 20px 0",
   },
+  progressSpinner: {
+    position: "absolute",
+  },
 });
 
 class CommentForm extends Component {
@@ -23,18 +27,22 @@ class CommentForm extends Component {
     body: "",
     errors: {},
     isFocused: false,
+    isLoading: false,
   };
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.UI.errors) {
       this.setState({
         errors: nextProps.UI.errors,
+        isLoading: false,
       });
     }
+    //clear after close
     if (!nextProps.UI.errors && !nextProps.UI.loading) {
       this.setState({
         body: "",
         errors: {},
+        isLoading: false,
       });
     }
   }
@@ -48,6 +56,9 @@ class CommentForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    this.setState({
+      isLoading: true,
+    });
     this.props.submitComment(this.props.woofId, { body: this.state.body });
   };
 
@@ -58,11 +69,7 @@ class CommentForm extends Component {
   };
 
   render() {
-    const {
-      classes,
-      authenticated,
-      UI: { loading },
-    } = this.props;
+    const { classes, authenticated } = this.props;
     const { errors } = this.state;
     const commentFormMarkUp = authenticated ? (
       <Grid item sm={12} style={{ textAlign: "center" }}>
@@ -87,9 +94,15 @@ class CommentForm extends Component {
               variant="contained"
               color="primary"
               className={classes.submitButton}
-              disabled={loading}
+              disabled={this.state.isLoading}
             >
               Submit
+              {this.state.isLoading && (
+                <CircularProgress
+                  size={30}
+                  className={classes.progressSpinner}
+                />
+              )}
             </Button>
           )}
         </form>

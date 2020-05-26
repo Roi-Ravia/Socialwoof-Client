@@ -65,6 +65,7 @@ export default function (state = initialState, action) {
         woof: {
           ...state.woof,
           comments: [action.payload, ...state.woof.comments],
+          commentCount: state.woof.commentCount + 1,
         },
       };
 

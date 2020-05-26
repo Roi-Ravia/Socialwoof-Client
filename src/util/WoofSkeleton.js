@@ -27,20 +27,21 @@ const styles = (theme) => ({
 
 const WoofSkeleton = (props) => {
   const { classes } = props;
-  const content = Array.from({ length: 3 }).map((item, index) => (
+  const content = Array.from({ length: 4 }).map((item, index) => (
     <Card className={classes.card} key={index}>
       <Skeleton
+        animation="wave"
         className={classes.image}
         variant="circle"
         width="25%"
         height={120}
       />
       <CardContent className={classes.cardContent}>
-        <Skeleton varian="text" width="20%" height={20} />
-        <Skeleton varian="text" width="40%" height={20} />
-        <Skeleton varian="text" width="90%" height={20} />
-        <Skeleton varian="text" width="90%" height={20} />
-        <Skeleton varian="text" width="45%" height={20} />
+        <Skeleton animation="wave" variant="text" width="20%" height={20} />
+        <Skeleton animation="wave" variant="text" width="40%" height={20} />
+        <Skeleton animation="wave" variant="text" width="90%" height={20} />
+        <Skeleton animation="wave" variant="text" width="90%" height={20} />
+        <Skeleton animation="wave" variant="text" width="45%" height={20} />
       </CardContent>
     </Card>
   ));

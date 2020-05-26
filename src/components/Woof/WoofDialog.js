@@ -6,7 +6,7 @@ import Comments from "./Comments";
 import MyButton from "../../util/MyButton";
 import LikeButton from "./LikeButton";
 import CommentForm from "./CommentForm";
-
+import MediaQuery from "react-responsive";
 //Redux
 import { connect } from "react-redux";
 import { getWoof, clearErrors } from "../../redux/actions/dataAction";
@@ -32,14 +32,23 @@ const styles = (theme) => ({
     borderRadius: "50%",
     objectFit: "cover",
   },
-  closeButton: {
+  desktopClose: {
     position: "absolute",
     top: "3%",
     left: "90%",
   },
+  mobileClose: {
+    position: "absolute",
+    top: "3%",
+    left: "84%",
+  },
   expandButton: {
     position: "absolute",
     left: "90%",
+  },
+  userActionButtons: {
+    position: "relative",
+    right: 12,
   },
   spinnerDiv: {
     textAlign: "center",
@@ -102,8 +111,9 @@ export class WoofDialog extends Component {
       },
       UI: { loading },
     } = this.props;
+
     const dialogMarkUp = loading ? (
-      <div className={classes.spinnerDiv}>
+      <div style={{ overflow: "hidden" }} className={classes.spinnerDiv}>
         <CircularProgress size={150} thickness={2} color="primary" />
       </div>
     ) : (
@@ -125,12 +135,14 @@ export class WoofDialog extends Component {
           </Typography>
           <hr className={classes.invisibleSeparator} />
           <Typography variant="body1">{body}</Typography>
-          <LikeButton woofId={woofId} />
-          <span>{likeCount} Likes</span>
-          <MyButton tip="Comments">
-            <ChatIcon color="primary" />
-          </MyButton>
-          <span> {commentCount} Comments</span>
+          <div className={classes.userActionButtons}>
+            <LikeButton woofId={woofId} />
+            <span>{likeCount} Likes</span>
+            <MyButton tip="Comments">
+              <ChatIcon color="primary" />
+            </MyButton>
+            <span> {commentCount} Comments</span>
+          </div>
         </Grid>
         <CommentForm woofId={woofId} />
         <Comments comments={comments} />
@@ -151,13 +163,25 @@ export class WoofDialog extends Component {
           fullWidth
           maxWidth="sm"
         >
-          <MyButton
-            tip="close"
-            onClick={this.handleClose}
-            tipClassName={classes.closeButton}
-          >
-            <CloseIcon />
-          </MyButton>
+          <MediaQuery minDeviceWidth={510}>
+            <MyButton
+              tip="close"
+              onClick={this.handleClose}
+              tipClassName={classes.desktopClose}
+            >
+              <CloseIcon />
+            </MyButton>
+          </MediaQuery>
+
+          <MediaQuery maxDeviceWidth={510}>
+            <MyButton
+              tip="close"
+              onClick={this.handleClose}
+              tipClassName={classes.mobileClose}
+            >
+              <CloseIcon />
+            </MyButton>
+          </MediaQuery>
           <DialogContent className={classes.DialogContent}>
             {dialogMarkUp}
           </DialogContent>

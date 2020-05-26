@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import PropTypes from "prop-types";
+import MediaQuery from "react-responsive";
 import MyButton from "../../util/MyButton";
 import DeleteWoof from "./DeleteWoof";
 import WoofDialog from "./WoofDialog";
 import LikeButton from "./LikeButton";
+
 //Redux
 import { connect } from "react-redux";
 import { deleteWoof } from "../../redux/actions/dataAction";
@@ -45,6 +47,14 @@ const styles = () => ({
   },
   userAction: {
     marginLeft: 15,
+  },
+  desktopComments: {
+    position: "relative",
+    right: "36px",
+  },
+  mobileComments: {
+    position: "relative",
+    right: 1,
   },
 });
 
@@ -112,10 +122,22 @@ export class Woof extends Component {
             <span>{likeCount} Likes</span>
           </Grid>
           <Grid item md={6} xs={8} className={classes.userAction}>
-            <MyButton tip="Comments">
-              <ChatIcon color="primary" />
-            </MyButton>
-            <span> {commentCount} Comments</span>
+            <MediaQuery minDeviceWidth={960}>
+              <div className={classes.desktopComments}>
+                <MyButton tip="Comments">
+                  <ChatIcon color="primary" />
+                </MyButton>
+                <span> {commentCount} Comments</span>
+              </div>
+            </MediaQuery>
+            <MediaQuery maxDeviceWidth={959}>
+              <div className={classes.mobileComments}>
+                <MyButton tip="Comments">
+                  <ChatIcon color="primary" />
+                </MyButton>
+                <span> {commentCount} Comments</span>
+              </div>
+            </MediaQuery>
           </Grid>
           <Grid item md={2} xs={3}>
             <WoofDialog
