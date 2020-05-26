@@ -66,7 +66,11 @@ class signup extends Component {
           <Typography variant="h3" className={classes.pageTitle}>
             Register
           </Typography>
-          <form noValidate onSubmit={this.handleSubmit}>
+          <form
+            noValidate
+            onSubmit={this.handleSubmit}
+            className={classes.formText}
+          >
             <TextField
               id="handle"
               name="handle"

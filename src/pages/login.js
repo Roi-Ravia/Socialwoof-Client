@@ -66,7 +66,11 @@ class login extends Component {
             <Typography variant="h3" className={classes.pageTitle}>
               Login
             </Typography>
-            <form noValidate onSubmit={this.handleSubmit}>
+            <form
+              noValidate
+              onSubmit={this.handleSubmit}
+              className={classes.formText}
+            >
               <TextField
                 id="email"
                 name="email"

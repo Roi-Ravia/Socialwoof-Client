@@ -26,7 +26,11 @@ export default {
       useNextVariant: true,
     },
     form: {
+      minWidth: 200,
       textAlign: "center",
+    },
+    formText: {
+      minWidth: 200,
     },
     pageTitle: {
       margin: "20px auto 20px auto",
