@@ -9,6 +9,12 @@ import {
 } from "../types";
 import axios from "axios";
 
+function setAuthorizationToken(token) {
+  const FBIdToken = `Bearer ${token}`;
+  localStorage.setItem("FBIdToken", FBIdToken);
+  axios.defaults.headers.common["Authorization"] = FBIdToken;
+}
+
 export const loginUser = (userData, history) => (dispatch) => {
   dispatch({ type: LOADING_UI });
   axios
@@ -95,9 +101,3 @@ export const markNotificationsRead = (notificationIds) => (dispatch) => {
     })
     .catch((err) => console.log(err));
 };
-
-function setAuthorizationToken(token) {
-  const FBIdToken = `Bearer ${token}`;
-  localStorage.setItem("FBIdToken", FBIdToken);
-  axios.defaults.headers.common["Authorization"] = FBIdToken;
-}

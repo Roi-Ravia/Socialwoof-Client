@@ -44,7 +44,7 @@ const styles = (theme) => ({
   },
   expandButton: {
     position: "absolute",
-    left: "86%",
+    right: "0",
   },
   userActionButtons: {
     position: "relative",

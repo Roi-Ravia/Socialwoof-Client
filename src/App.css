@@ -10,10 +10,6 @@ p {
   font-weight: 700;
 }
 
-#textBody {
-  color: red;
-}
-
 .container {
   margin: 12% auto 0 auto;
   max-width: 1000px;
